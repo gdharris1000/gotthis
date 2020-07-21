@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import Self from './components/self';
 import Play from './components/play';
 import Living from './components/living';
-// import Work from './components/work';
+import Work from './components/work';
 // import Total from './components/total';
 import {StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 
@@ -41,7 +41,7 @@ export default function App() {
           incrementLivingCount={incrementLivingCount}
           livingCount={livingCount}
         />
-        {/* <Work incrementWorkCount={incrementWorkCount} workCount={workCount} /> */}
+        <Work incrementWorkCount={incrementWorkCount} workCount={workCount} />
         {/* <Total
           livingCount={livingCount}
           workCount={workCount}
