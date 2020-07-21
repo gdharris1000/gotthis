@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 // import Nav from './components/nav';
-// import Self from './components/self';
+import Self from './components/self';
 import Play from './components/play';
 import Living from './components/living';
 // import Work from './components/work';
@@ -35,7 +35,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
         {/* <Nav /> */}
-        {/* <Self incrementSelfCount={incrementSelfCount} selfCount={selfCount} /> */}
+        <Self incrementSelfCount={incrementSelfCount} selfCount={selfCount} />
         <Play incrementPlayCount={incrementPlayCount} playCount={playCount} />
         <Living
           incrementLivingCount={incrementLivingCount}
