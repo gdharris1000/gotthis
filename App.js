@@ -4,7 +4,7 @@ import Self from './components/self';
 import Play from './components/play';
 import Living from './components/living';
 import Work from './components/work';
-// import Total from './components/total';
+import Total from './components/total';
 import {StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 
 export default function App() {
@@ -42,12 +42,12 @@ export default function App() {
           livingCount={livingCount}
         />
         <Work incrementWorkCount={incrementWorkCount} workCount={workCount} />
-        {/* <Total
+        <Total
           livingCount={livingCount}
           workCount={workCount}
           selfCount={selfCount}
           playCount={playCount}
-        /> */}
+        />
       </ScrollView>
     </SafeAreaView>
   );
