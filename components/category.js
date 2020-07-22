@@ -8,18 +8,22 @@ export default function Category(props) {
   const count = props.count;
   const achievements = props.achievements;
 
-  //   const categoryAchievments = () => {
-  //     achievements.map((key, item) => {
-  //         if(item.category === catName){
-  //             return <Checkbox
-  //             label={item.achievement}
-  //             incrementCount={props.incrementSelfCount}
-  //           />
-  //         }
-  //     })
+  const setColour = () => {
+    if (catName === 'Work') {
+      return '#c9daf8';
+    } else if (catName === 'Self') {
+      return '#d9ead3';
+    } else if (catName === 'Play') {
+      return '#ead1dc';
+    } else if (catName === 'Living') {
+      return '#fce5cd';
+    } else {
+      return 'grey';
+    }
+  };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: setColour()}]}>
       <Card title={catName} style={styles.background}>
         <FlatList
           data={achievements}
@@ -43,7 +47,6 @@ export default function Category(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#d9ead3',
     marginTop: 15,
     paddingBottom: 15,
   },

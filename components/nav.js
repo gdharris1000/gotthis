@@ -18,6 +18,6 @@ export default function Nav(props) {
 
 const styles = StyleSheet.create({
   header: {
-    marginBottom: 20,
+    paddingBottom: 10,
   },
 });

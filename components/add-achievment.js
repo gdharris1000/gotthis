@@ -23,7 +23,7 @@ export default function AddAchievement(props) {
         onChangeText={onChangeAchievement}
         style={styles.txtInput}
         multiline
-        numberOfLines={4}
+        numberOfLines={6}
       />
 
       <View style={styles.btnView}>
