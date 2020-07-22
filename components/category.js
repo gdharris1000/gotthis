@@ -23,13 +23,16 @@ export default function Category(props) {
       <Card title={catName} style={styles.background}>
         <FlatList
           data={achievements}
-          renderItem={({item}) => (
-            <Checkbox
-              label={item.achievement}
-              incrementCount={props.incrementCount}
-            />
-            
-          )}
+          renderItem={({item, index}) => {
+              if (item.category === catName){
+                  return <Checkbox
+                  label={item.achievement}
+                  incrementCount={props.incrementCount}
+                />;
+              }
+          }
+        
+          }
         />
         {/* <Text>{achievements[0].achievement}</Text> */}
         <Text style={styles.total}>Section total: {count}</Text>
