@@ -1,12 +1,7 @@
 import React, {useState} from 'react';
 import Nav from './components/nav';
-import Self from './components/self';
-import Play from './components/play';
-import Living from './components/living';
-import Work from './components/work';
 import Total from './components/total';
 import AddAchievement from './components/add-achievment';
-// import {achievements, setAchievements} from './components/achievements';
 import {StyleSheet, ScrollView, SafeAreaView, View} from 'react-native';
 import Category from './components/category';
 import uuid from 'uuid-random';
@@ -170,13 +165,6 @@ export default function App() {
             incrementCount={incrementWorkCount}
             achievements={achievements}
           />
-          {/* <Self incrementSelfCount={incrementSelfCount} selfCount={selfCount} /> */}
-          {/* <Play incrementPlayCount={incrementPlayCount} playCount={playCount} /> */}
-          {/* <Living
-        incrementLivingCount={incrementLivingCount}
-        livingCount={livingCount}
-      /> */}
-          {/* <Work incrementWorkCount={incrementWorkCount} workCount={workCount} /> */}
           <Total
             livingCount={livingCount}
             workCount={workCount}
