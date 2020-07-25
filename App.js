@@ -30,9 +30,12 @@ export default function App() {
     isSelected ? setWorkCount(workCount - 1) : setWorkCount(workCount + 1);
   };
 
-  const addAchievement = (achievement, category) => {
+  const addAchievement = (achievement, categories, tags) => {
     setAchievements((prevItems) => {
-      return [{id: uuid(), achievement, category, status: true}, ...prevItems];
+      return [
+        {id: uuid(), achievement, categories, tags, status: true},
+        ...prevItems,
+      ];
     });
     console.log(achievements);
   };

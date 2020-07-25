@@ -11,6 +11,7 @@ import CheckBox from '@react-native-community/checkbox';
 export default function AddAchievement(props) {
   const [achievement, setAchievement] = useState('');
   const [category, setCategory] = useState([]);
+  const [tags, setTags] = useState([]);
   const [catSelect, setCatSelect] = useState([
     {category: 'Work', selected: false},
     {category: 'Self', selected: false},
@@ -18,7 +19,16 @@ export default function AddAchievement(props) {
     {category: 'Play', selected: false},
   ]);
 
-  const updateValue = (index) => {
+  const [tagsSelect, setTagsSelect] = useState([
+    {tag: 'Health, Wellbeing, Fitness', selected: false},
+    {tag: 'Creating', selected: false},
+    {tag: 'New Developments', selected: false},
+    {tag: 'Giving', selected: false},
+    {tag: 'Receiving', selected: false},
+    {tag: 'Other', selected: false},
+  ]);
+
+  const updateCatValue = (index) => {
     let newArr = [...catSelect];
     newArr[index].selected = !catSelect[index].selected;
     setCatSelect(newArr);
@@ -31,9 +41,22 @@ export default function AddAchievement(props) {
     setCategory(cat);
   };
 
+  const updateTagsValue = (index) => {
+    let newArr = [...tagsSelect];
+    newArr[index].selected = !tagsSelect[index].selected;
+    setTagsSelect(newArr);
+    var newTags = [];
+    tagsSelect.map((item) => {
+      if (item.selected === true) {
+        newTags.push(item.tag);
+      }
+    });
+    setTags(newTags);
+  };
+
   const submitAchievement = () => {
     console.log('categoryies:' + category);
-    props.addAchievement(achievement, category);
+    props.addAchievement(achievement, category, tags);
   };
 
   return (
@@ -53,7 +76,20 @@ export default function AddAchievement(props) {
           <CheckBox
             disabled={false}
             value={item.selected}
-            onValueChange={() => updateValue(index)}
+            onValueChange={() => updateCatValue(index)}
+          />
+        </>
+      ))}
+
+      <Text>What does it cover</Text>
+
+      {tagsSelect.map((item, index) => (
+        <>
+          <Text>{item.tag}</Text>
+          <CheckBox
+            disabled={false}
+            value={item.selected}
+            onValueChange={() => updateTagsValue(index)}
           />
         </>
       ))}
