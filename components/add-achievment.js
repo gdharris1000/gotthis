@@ -6,13 +6,12 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-// import {CheckBox} from 'react-native-elements';
 import CheckBox from '@react-native-community/checkbox';
 
 export default function AddAchievement(props) {
   const [achievement, setAchievement] = useState('');
   const [category, setCategory] = useState([]);
-  const [isSelected, setSelection] = useState([
+  const [catSelect, setCatSelect] = useState([
     {category: 'Work', selected: false},
     {category: 'Self', selected: false},
     {category: 'Living', selected: false},
@@ -20,18 +19,13 @@ export default function AddAchievement(props) {
   ]);
 
   const updateValue = (index) => {
-    let newArr = [...isSelected];
-    newArr[index].selected = !isSelected[index].selected;
-    setSelection(newArr);
+    let newArr = [...catSelect];
+    newArr[index].selected = !catSelect[index].selected;
+    setCatSelect(newArr);
     var cat = [];
-    isSelected.map((item) => {
+    catSelect.map((item) => {
       if (item.selected === true) {
         cat.push(item.category);
-
-        // setCategory((prevItems) => {
-        //   console.log('item: ' + item.category);
-        //   return [item.category, ...prevItems];
-        // });
       }
     });
     setCategory(cat);
@@ -41,7 +35,6 @@ export default function AddAchievement(props) {
     console.log('categoryies:' + category);
     props.addAchievement(achievement, category);
   };
-
 
   return (
     <View style={styles.container}>
@@ -54,7 +47,7 @@ export default function AddAchievement(props) {
       />
       <Text>Where does it sit?</Text>
 
-      {isSelected.map((item, index) => (
+      {catSelect.map((item, index) => (
         <>
           <Text>{item.category}</Text>
           <CheckBox
@@ -65,41 +58,6 @@ export default function AddAchievement(props) {
         </>
       ))}
 
-      {/* <View style={styles.btnView}>
-        <RadioButton
-          value="Self"
-          status={category === 'Self' ? 'checked' : 'unchecked'}
-          onPress={() => setCategory('Self')}
-        />
-        <Text style={styles.radioBtnText}>Self</Text>
-      </View>gory('Work')}
-        />
-        <Text style={styles.radioBtnText}>Work</Text>
-      </View>
-
-      <View style={styles.btnView}>
-        <RadioButton
-
-      <View style={styles.btnView}>
-        <RadioButton
-          value="Work"
-          status={category === 'Work' ? 'checked' : 'unchecked'}
-          onPress={() => setCate
-          value="Living"
-          status={category === 'Living' ? 'checked' : 'unchecked'}
-          onPress={() => setCategory('Living')}
-        />
-        <Text style={styles.radioBtnText}>Living</Text>
-      </View>
-
-      <View style={styles.btnView}>
-        <RadioButton
-          value="Play"
-          status={category === 'Play' ? 'checked' : 'unchecked'}
-          onPress={() => setCategory('Play')}
-        />
-        <Text style={styles.radioBtnText}>Play</Text>
-      </View> */}
       <TouchableOpacity style={styles.btn} onPress={() => submitAchievement()}>
         <Text style={styles.btnText}>Add Achievement</Text>
       </TouchableOpacity>
