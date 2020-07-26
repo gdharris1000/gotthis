@@ -68,30 +68,30 @@ export default function AddAchievement(props) {
         multiline
         numberOfLines={6}
       />
-      <Text>Where does it sit?</Text>
+      <Text style={styles.textArea}>Where does it sit?</Text>
 
       {catSelect.map((item, index) => (
-        <>
-          <Text>{item.category}</Text>
+        <View style={styles.checkboxArea}>
           <CheckBox
             disabled={false}
             value={item.selected}
             onValueChange={() => updateCatValue(index)}
           />
-        </>
+          <Text style={styles.checkboxText}>{item.category}</Text>
+        </View>
       ))}
 
-      <Text>What does it cover</Text>
+      <Text style={styles.textArea}>What does it cover?</Text>
 
       {tagsSelect.map((item, index) => (
-        <>
-          <Text>{item.tag}</Text>
+        <View style={styles.checkboxArea}>
           <CheckBox
             disabled={false}
             value={item.selected}
             onValueChange={() => updateTagsValue(index)}
           />
-        </>
+          <Text style={styles.checkboxText}>{item.tag}</Text>
+        </View>
       ))}
 
       <TouchableOpacity style={styles.btn} onPress={() => submitAchievement()}>
@@ -118,11 +118,6 @@ const styles = StyleSheet.create({
   btnView: {
     flexDirection: 'row',
   },
-  radioBtnText: {
-    marginLeft: 10,
-    marginTop: 10,
-    fontWeight: 'bold',
-  },
   txtInput: {
     borderColor: 'black',
     borderWidth: 2,
@@ -131,7 +126,17 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
   },
-  checkbox: {
-    alignSelf: 'center',
+  checkboxArea: {
+    flexDirection: 'row',
+  },
+  textArea: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  checkboxText: {
+    paddingLeft: 10,
+    marginTop: 6,
   },
 });

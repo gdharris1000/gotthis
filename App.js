@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Nav from './components/nav';
 import Total from './components/total';
 import AddAchievement from './components/add-achievment';
-import {StyleSheet, ScrollView, SafeAreaView, View} from 'react-native';
+import {StyleSheet, ScrollView, SafeAreaView, View, Text} from 'react-native';
 import Category from './components/category';
 import uuid from 'uuid-random';
 
@@ -11,23 +11,30 @@ export default function App() {
   const [playCount, setPlayCount] = useState(0);
   const [livingCount, setLivingCount] = useState(0);
   const [workCount, setWorkCount] = useState(0);
+  const [achievements, setAchievements] = useState([]);
 
-  const incrementSelfCount = (isSelected) => {
-    isSelected ? setSelfCount(selfCount - 1) : setSelfCount(selfCount + 1);
+  const countCategories = () => {
+    resetCount();
+    achievements.forEach((element) => {
+      element.categories.forEach((c) => {
+        if (c === 'Self') {
+          setSelfCount(selfCount + 1);
+        } else if (c === 'Living') {
+          setLivingCount(livingCount + 1);
+        } else if (c === 'Work') {
+          setWorkCount(workCount + 1);
+        } else if (c === 'Play') {
+          setPlayCount(playCount + 1);
+        }
+      });
+    });
   };
 
-  const incrementPlayCount = (isSelected) => {
-    isSelected ? setPlayCount(playCount - 1) : setPlayCount(playCount + 1);
-  };
-
-  const incrementLivingCount = (isSelected) => {
-    isSelected
-      ? setLivingCount(livingCount - 1)
-      : setLivingCount(livingCount + 1);
-  };
-
-  const incrementWorkCount = (isSelected) => {
-    isSelected ? setWorkCount(workCount - 1) : setWorkCount(workCount + 1);
+  const resetCount = () => {
+    setSelfCount(0);
+    setWorkCount(0);
+    setLivingCount(0);
+    setPlayCount(0);
   };
 
   const addAchievement = (achievement, categories, tags) => {
@@ -37,23 +44,11 @@ export default function App() {
         ...prevItems,
       ];
     });
+    countCategories();
     console.log(achievements);
   };
 
-  const [achievements, setAchievements] = useState([
-    {
-      id: uuid(),
-      achievement: 'I have gone for a walk today',
-      categories: ['Self'],
-      tags: ['Health, wellbeing, fitness'],
-    },
-    {
-      id: uuid(),
-      achievement: "Didn't steal any pens",
-      categories: ['Work'],
-      tags: ['Giving'],
-    },
-  ]);
+  
 
   // const [achievements, setAchievements] = useState([
   //   {
@@ -159,7 +154,11 @@ export default function App() {
         <ScrollView style={styles.scrollView}>
           <Nav />
           <AddAchievement addAchievement={addAchievement} />
-          <Category
+          <Text>Play: {playCount.toString()}</Text>
+          <Text>Work: {workCount.toString()}</Text>
+          <Text>Living: {livingCount.toString()}</Text>
+          <Text>Self: {selfCount.toString()}</Text>
+          {/* <Category
             catName="Living"
             count={livingCount}
             incrementCount={incrementLivingCount}
@@ -182,7 +181,7 @@ export default function App() {
             count={workCount}
             incrementCount={incrementWorkCount}
             achievements={achievements}
-          />
+          /> */}
           <Total
             livingCount={livingCount}
             workCount={workCount}
